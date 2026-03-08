@@ -1,30 +1,35 @@
-// Agrega aquí los números vendidos, ej: [10, 20, 500]
-const vendidosOficiales = []; 
+// --- 🛒 LISTA DE NÚMEROS VENDIDOS (Deben ser los mismos de arriba) ---
+const vendidosOficiales = [5, 12, 120, 450, 800]; 
+
 const totalNumeros = 1000;
-const tlfWhatsapp = "584122415696";
-let numSeleccionado = null;
+const miTelefono = "584122415696";
+let numeroElegido = null;
 
 const contenedor = document.getElementById('contenedor-rifa');
 const capaPago = document.getElementById('capa-pago');
-const textoNum = document.getElementById('num-pago');
+const displayNum = document.getElementById('num-pago');
 
-// Generar números
+// Crear los 1000 cuadritos
 for (let i = 1; i <= totalNumeros; i++) {
     let div = document.createElement('div');
     div.classList.add('numero');
     div.id = `n-${i}`;
     div.innerText = i;
 
+    // Si ya se vendió, lo ponemos gris y bloqueado
     if (vendidosOficiales.includes(i)) {
         div.classList.add('vendido');
     } else {
-        div.onclick = () => {
-            numSeleccionado = i;
-            textoNum.innerText = i;
-            capaPago.classList.remove('oculto');
-        };
+        div.onclick = () => abrirPago(i);
     }
+    
     contenedor.appendChild(div);
+}
+
+function abrirPago(num) {
+    numeroElegido = num;
+    displayNum.innerText = num;
+    capaPago.classList.remove('oculto');
 }
 
 function cerrarPago() {
@@ -32,14 +37,18 @@ function cerrarPago() {
 }
 
 function irAWhatsapp() {
-    const msj = encodeURIComponent(`¡Hola! Elegí el número ${numSeleccionado} para la rifa de la prótesis. Aquí envío el comprobante.`);
-    window.open(`https://wa.me/${tlfWhatsapp}?text=${msj}`, '_blank');
+    const msg = encodeURIComponent(`¡Hola! Quiero el número ${numeroElegido} para la rifa. Ya hice el pago, aquí el comprobante.`);
+    window.open(`https://wa.me/${miTelefono}?text=${msg}`, '_blank');
     cerrarPago();
 }
 
-// Buscador
+// Buscador para que la gente encuentre su número rápido
 document.getElementById('buscador').oninput = (e) => {
     const val = e.target.value;
     const el = document.getElementById(`n-${val}`);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.style.border = "3px solid #25d366";
+        setTimeout(() => el.style.border = "1px solid #ddd", 2000);
+    }
 };
