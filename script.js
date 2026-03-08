@@ -1,7 +1,7 @@
 const totalNumeros = 1000; // Puedes cambiar la cantidad
 const contenedor = document.getElementById('contenedor-rifa');
 
-// Generar números
+// Generar nÃºmeros
 for (let i = 1; i <= totalNumeros; i++) {
     let div = document.createElement('div');
     div.classList.add('numero');
@@ -16,9 +16,10 @@ for (let i = 1; i <= totalNumeros; i++) {
 }
 
 function confirmarCompra(num, elemento) {
-    if(confirm(`¿Deseas apartar el número ${num}?`)) {
+    if(confirm(`Â¿Deseas apartar el nÃºmero ${num}?`)) {
         elemento.classList.add('vendido');
-        // Aquí conectarías con tu base de datos o WhatsApp
-        window.open(`https://wa.me/+584122415696text=Hola, quiero el número ${num} de la rifa`);
+        // AquÃ­ conectarÃ­as con tu base de datos o WhatsApp
+        window.open(`https://wa.me/+584122415696 text=Hola, quiero el nÃºmero ${num} de la rifa`);
     }
+
 }
