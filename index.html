@@ -1,17 +1,56 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un Paso por la Vida - Inicio</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Paso por la Vida - Inicio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header style="padding: 20px; background: white; border-bottom: 2px solid #25d366;">
-<h1>Un Paso por la Vida</h1>
-<p>Valencia, Carabobo</p>
-</header>
+    <header class="inicio-header">
+        <h1>Un Paso por la Vida</h1>
+        <p>Valencia, Carabobo</p>
+    </header>
 
+    <main class="contenedor-inicio">
+        <section class="seccion-foto">
+            <img src="foto-senor.png" alt="Campaña Solidaria" class="foto-principal">
+            <div class="historia">
+                <p>Ayúdanos con la prótesis de pierna. Cada número es una nueva oportunidad para volver a caminar.</p>
+            </div>
+        </section>
+
+        <section class="meta-progreso">
+            <h3>Progreso de la Rifa</h3>
+            <div class="barra-fondo">
+                <div class="barra-llena" style="width: 15%;">15%</div> 
+            </div>
+            <div class="estadisticas">
+                <p><strong>Meta:</strong> 1000 números</p>
+            </div>
+        </section>
+
+        <section class="acciones">
+            <a href="rifa.html" class="btn-principal">🎟️ Ver Números y Comprar</a>
+            
+            <button class="btn-donar" onclick="abrirDonar()">❤️ Solo quiero Donar</button>
+        </section>
+
+        <div id="modal-donar" class="oculto-inicio">
+            <div class="capa-oscura" onclick="cerrarDonar()"></div>
+            <div class="tarjeta-donacion">
+                <h3>Datos para Donar</h3>
+                <div class="datos-banco">
+                    <p><strong>PAGO MÓVIL:</strong><br>
+                    Banco: 0102<br>
+                    Cédula: V-12.345.678<br>
+                    Teléfono: 04122415696</p>
+                </div>
+                <button class="btn-cerrar-modal" onclick="cerrarDonar()">Cerrar</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script-inicio.js"></script>
 </body>
 </html>
