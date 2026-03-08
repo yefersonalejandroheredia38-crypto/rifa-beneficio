@@ -1,28 +1,28 @@
-// --- CONFIGURACIÓN DE LA META ---
-// Copia aquí los mismos números que tienes en tu script de la rifa
-const vendidosOficiales = [1, 2, 3, 4, 5]; // Ejemplo: 5 números vendidos
+// --- 🛒 LISTA DE NÚMEROS VENDIDOS (Cópialos aquí también) ---
+const vendidosOficiales = [5, 12, 120, 450, 800]; // Ejemplo: añade los que te paguen
+
+// --- ⚙️ CONFIGURACIÓN DE LA META ---
 const metaTotal = 1000;
 
-// Función que calcula y llena la barra al cargar la página
 window.onload = function() {
-    const cantidadVendidos = vendidosOficiales.length;
-    const porcentaje = (cantidadVendidos / metaTotal) * 100;
+    const cantidad = vendidosOficiales.length;
+    const porcentaje = (cantidad / metaTotal) * 100;
     
-    // Actualizamos la barra visualmente
+    // Actualizar la Barra Verde
     const barra = document.querySelector('.barra-llena');
-    const estadisticas = document.querySelector('.estadisticas p');
-    
     if (barra) {
         barra.style.width = porcentaje + "%";
         barra.innerText = Math.floor(porcentaje) + "%";
     }
     
+    // Actualizar el Texto de abajo
+    const estadisticas = document.querySelector('.meta-progreso h3');
     if (estadisticas) {
-        estadisticas.innerHTML = `<strong>${cantidadVendidos}</strong> vendidos de <strong>${metaTotal}</strong>`;
+        estadisticas.innerHTML = `Llevamos ${cantidad} de ${metaTotal} números vendidos`;
     }
 };
 
-// Funciones del Modal de Donación
+// Funciones para el botón de Donar
 function abrirDonar() {
     document.getElementById('modal-donar').style.display = 'block';
 }
