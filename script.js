@@ -19,7 +19,7 @@ function confirmarCompra(num, elemento) {
     if(confirm(`¿Deseas apartar el número ${num}?`)) {
         elemento.classList.add('vendido');
         // Aquí conectarías con tu base de datos o WhatsApp
-        window.open(`https://wa.me/584122415696 text=Hola, quiero el número ${num} de la rifa`);
+        window.open(`https://wa.me/+584122415696 text=Hola, quiero el número ${num} de la rifa`);
     }
 
 }
