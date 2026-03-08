@@ -3,37 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rifa Solidaria - Una Prótesis para un Sueño</title>
+    <title>Rifa Solidaria - Prótesis de Pierna</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Rifa a Beneficio: Prótesis de Pierna</h1>
-        <p>Tu apoyo es el paso hacia su nueva meta.</p>
-        
-        <div class="info-rifa">
-            <p><strong>1.</strong> Elige tu número <br> 
-               <strong>2.</strong> Confirma por WhatsApp <br>
-               <strong>3.</strong> Envía el comprobante</p>
-        </div>
-
-        <input type="number" id="buscador" placeholder="Busca tu número (1-1000)" min="1" max="1000">
+        <h1>Rifa Solidaria</h1>
+        <p>Ayúdanos con la prótesis. Elige tu número:</p>
+        <input type="number" id="buscador" placeholder="Busca tu número (1-1000)">
     </header>
 
     <main>
-        <div id="contenedor-rifa">
-            </div>
+        <div id="contenedor-rifa"></div>
     </main>
-
-    <div id="modal-ganador" class="modal oculto">
-        <div class="contenido-modal">
-            <div id="confeti"></div>
-            <h2>¡FELICIDADES!</h2>
-            <p>El número ganador es:</p>
-            <div id="numero-premiado"></div>
-            <button onclick="cerrarModal()">Cerrar</button>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
