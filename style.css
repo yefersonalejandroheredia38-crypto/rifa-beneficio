@@ -1,141 +1,193 @@
-/* --- CONFIGURACIÓN BASE Y FONDO --- */
-* { box-sizing: border-box; }
+/* --- CONFIGURACIÓN DE FUENTES Y FONDO --- */
+* { 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; /* Fuente principal suave */
+}
 
 body {
     background: linear-gradient(135deg, #4169E1 0%, #000080 100%);
     background-attachment: fixed;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
     min-height: 100vh;
     color: white;
 }
 
+/* Efecto de puntos en el fondo */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
     background-size: 25px 25px;
-    z-index: -1; 
+    z-index: -1;
 }
 
 /* --- HEADER --- */
 .inicio-header { 
-    padding: 50px 20px; 
-    background: rgba(0, 0, 0, 0.25); 
-    border-bottom: 4px solid #25d366; 
+    padding: 60px 20px; 
     text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid #25d366;
 }
 
 .inicio-header h1 {
+    font-family: 'Montserrat', sans-serif; /* Fuente fuerte para títulos */
+    font-weight: 800;
+    font-size: 26px;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    color: #ffffff;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .inicio-header p {
-    font-size: 18px;
-    font-weight: 600;
     color: #25d366;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
-/* --- TARJETA BLANCA --- */
+/* --- TARJETA PRINCIPAL --- */
 .contenedor-inicio {
-    background: rgba(255, 255, 255, 0.98); 
+    background: rgba(255, 255, 255, 0.98);
     border-radius: 30px;
     padding: 30px;
-    margin: -20px auto 40px;
+    margin: -30px auto 50px;
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     color: #333;
 }
 
 .foto-principal {
     width: 100%;
-    max-width: 450px;
-    height: auto;
     border-radius: 20px;
-    display: block;
-    margin: 0 auto 20px;
     transition: transform 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .foto-principal:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
-/* --- BOTONES Y MODALES --- */
-.btn-principal { 
-    display: block; 
-    background: #007bff; 
-    color: white; 
-    text-decoration: none; 
-    padding: 20px; 
-    border-radius: 15px; 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px; 
+.historia p {
+    font-size: 16px;
+    line-height: 1.6;
     text-align: center;
-    margin-bottom: 15px; 
+    color: #555;
+    margin: 20px 0;
 }
 
-.btn-donar { 
-    background: #fff0f0; 
-    color: #d63031; 
-    border: 2px dashed #ff7675; 
-    padding: 16px; 
-    width: 100%; 
-    border-radius: 15px; 
+/* --- BARRA DE PROGRESO --- */
+.meta-progreso h3 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; 
+    color: #00416A;
+    font-size: 20px;
+    text-align: center;
+}
+
+.barra-fondo {
+    background: #eee;
+    height: 35px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.barra-llena {
+    background: linear-gradient(90deg, #25d366, #128c7e);
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* --- BOTONES --- */
+.btn-principal {
+    display: block;
+    background: #007bff;
+    color: white !important;
+    text-decoration: none;
+    padding: 18px;
+    border-radius: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    width: 100%;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-principal:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-donar {
+    background: #fff0f0;
+    color: #d63031;
+    border: 2px dashed #ff7675;
+    padding: 16px;
+    width: 100%;
+    border-radius: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 15px;
     cursor: pointer;
 }
 
-.modal-estructura { 
-    display: none; 
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    z-index: 9999; 
+/* --- MODALES (BIENVENIDA Y DONAR) --- */
+.modal-estructura {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10000;
 }
 
-.capa-oscura { 
-    position: absolute; 
-    width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.8); 
+.capa-oscura {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
 }
 
-.tarjeta-donacion { 
-    position: relative; 
-    top: 50%; left: 50%; 
-    transform: translate(-50%, -50%); 
-    background: white; 
-    padding: 30px; 
-    border-radius: 25px; 
-    width: 85%; 
-    max-width: 400px; 
+.tarjeta-mensaje {
+    position: relative;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 40px 30px;
+    border-radius: 30px;
+    width: 85%;
+    max-width: 400px;
     text-align: center;
     color: #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
-.datos-banco { 
-    background: #f1f3f5; 
-    padding: 15px; 
-    border-radius: 12px; 
-    margin: 20px 0; 
-    text-align: left; 
+.icono-corazon { font-size: 60px; margin-bottom: 10px; }
+
+.tarjeta-mensaje h2, .tarjeta-mensaje h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0;
+}
+
+.datos-banco {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 15px;
     border-left: 5px solid #007bff;
+    text-align: left;
+    margin: 20px 0;
 }
 
-.btn-cerrar-modal {
-    background: #333;
-    color: white;
+.btn-cerrar {
+    background: #eee;
     border: none;
-    padding: 12px 25px;
+    padding: 10px 20px;
     border-radius: 10px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
 }
