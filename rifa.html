@@ -28,6 +28,12 @@
             Elige tu número de la suerte
             <i class="fas fa-star"></i>
         </h1>
+
+        <!-- CONTADOR REGRESIVO (NUEVO) -->
+        <div class="contador-wrapper">
+            <i class="fas fa-hourglass-half"></i>
+            <span id="contador"></span>
+        </div>
         
         <div class="buscador-wrapper">
             <i class="fas fa-search"></i>
@@ -52,9 +58,12 @@
 
     <main>
         <!-- Contenedor donde se generarán los números -->
-        <div id="contenedor-rifa" class="numeros-grid"></div>
+        <div id="contenedor-rifa" class="numeros-grid">
+            <!-- Mensaje de carga (NUEVO) -->
+            <div id="cargando" class="cargando">Cargando números...</div>
+        </div>
 
-        <!-- Modal de pago -->
+        <!-- Modal de pago (mejorado con botón copiar y mensaje especial) -->
         <div id="capa-pago" class="modal-estructura oculto">
             <div class="capa-oscura" onclick="cerrarPago()"></div>
             <div class="tarjeta-mensaje glass-effect pago-card">
@@ -62,6 +71,7 @@
                     <i class="fas fa-check-circle"></i>
                     <h3>Número seleccionado</h3>
                     <div class="numero-seleccionado-grande" id="num-pago">0</div>
+                    <p id="mensaje-especial" class="mensaje-especial"></p> <!-- Mensaje especial -->
                 </div>
                 
                 <div class="detalles-banco">
@@ -84,6 +94,10 @@
                             <strong>$1 (cambio del día)</strong>
                         </div>
                     </div>
+                    <!-- Botón copiar datos (NUEVO) -->
+                    <button class="btn-copiar" onclick="copiarDatos()">
+                        <i class="fas fa-copy"></i> Copiar datos
+                    </button>
                 </div>
                 
                 <div class="pago-acciones">
@@ -97,6 +111,12 @@
             </div>
         </div>
     </main>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/584122415696?text=Hola%2C%20tengo%20una%20consulta%20sobre%20la%20rifa" 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Script de la rifa -->
     <script src="script.js"></script>
