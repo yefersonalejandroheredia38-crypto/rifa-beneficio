@@ -1,60 +1,50 @@
-// --- LISTA DE NÚMEROS VENDIDOS ---
-const vendidosOficiales = [5, 12, 120, 450, 800]; 
+// ===== LISTA DE NÚMEROS VENDIDOS (debe ser la misma que en script-inicio.js) =====
+const vendidosOficiales = [5, 12, 120, 450, 800]; // ¡Actualiza aquí también!
 const totalNumeros = 1000;
-const miTelefono = "584122415696"; // ¡CAMBIA AQUÍ!
+const miTelefono = "584122415696"; // <--- CAMBIA AQUÍ A TU NÚMERO REAL (código país + número sin 0)
 
 let numeroElegido = null;
 
-// Elementos del DOM
-const contenedor = document.getElementById('contenedor-rifa');
-const capaPago = document.getElementById('capa-pago');
-const displayNum = document.getElementById('num-pago');
+// Crear los números cuando la página cargue
+document.addEventListener('DOMContentLoaded', function() {
+    const contenedor = document.getElementById('contenedor-rifa');
+    if (!contenedor) return;
 
-// Crear números
-function crearNumeros() {
-    if (!contenedor) {
-        console.error('No existe el contenedor');
-        return;
-    }
-    
-    contenedor.innerHTML = '';
-    
     for (let i = 1; i <= totalNumeros; i++) {
         const div = document.createElement('div');
         div.classList.add('numero');
         div.id = `n-${i}`;
         div.innerText = i;
-        div.setAttribute('data-numero', i);
 
         if (vendidosOficiales.includes(i)) {
             div.classList.add('vendido');
         } else {
-            div.onclick = () => seleccionarNumero(i, div);
+            div.addEventListener('click', (function(num) {
+                return function() { seleccionarNumero(num); };
+            })(i));
         }
-        
         contenedor.appendChild(div);
     }
-    console.log('Números creados:', totalNumeros);
-}
+});
 
-// Seleccionar número
-function seleccionarNumero(num, elemento) {
+function seleccionarNumero(num) {
+    // Quitar selección anterior
     document.querySelectorAll('.numero.seleccionado').forEach(el => {
         el.classList.remove('seleccionado');
     });
-    
-    elemento.classList.add('seleccionado');
-    abrirPago(num);
-}
 
-function abrirPago(num) {
+    // Marcar el nuevo
+    const elemento = document.getElementById(`n-${num}`);
+    if (elemento) elemento.classList.add('seleccionado');
+
+    // Abrir modal
     numeroElegido = num;
-    if (displayNum) displayNum.innerText = num;
-    if (capaPago) capaPago.classList.remove('oculto');
+    document.getElementById('num-pago').innerText = num;
+    document.getElementById('capa-pago').classList.remove('oculto');
 }
 
 function cerrarPago() {
-    if (capaPago) capaPago.classList.add('oculto');
+    document.getElementById('capa-pago').classList.add('oculto');
     document.querySelectorAll('.numero.seleccionado').forEach(el => {
         el.classList.remove('seleccionado');
     });
@@ -65,32 +55,32 @@ function irAWhatsapp() {
         alert('Selecciona un número primero');
         return;
     }
-    
-    const msg = encodeURIComponent(
+
+    const mensaje = encodeURIComponent(
         `*RIFA SOLIDARIA*\n\n` +
-        `Quiero el número *${numeroElegido}*.\n` +
-        `Ya pagué. Adjunto comprobante.`
+        `Hola, quiero el número ${numeroElegido} para la rifa. Ya hice el pago. Adjunto comprobante.`
     );
-    
-    window.open(`https://wa.me/${miTelefono}?text=${msg}`, '_blank');
+
+    window.open(`https://wa.me/${miTelefono}?text=${mensaje}`, '_blank');
     cerrarPago();
 }
 
 // Buscador
 const buscador = document.getElementById('buscador');
 if (buscador) {
-    buscador.addEventListener('input', (e) => {
-        const val = e.target.value;
-        if (val && val >= 1 && val <= totalNumeros) {
+    buscador.addEventListener('input', function(e) {
+        const val = parseInt(e.target.value);
+        if (val >= 1 && val <= totalNumeros) {
             const el = document.getElementById(`n-${val}`);
             if (el) {
-                el.scrollIntoView({ behavior: "smooth", block: "center" });
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 el.style.borderColor = '#25d366';
-                setTimeout(() => el.style.borderColor = '', 1500);
+                el.style.boxShadow = '0 0 20px #25d366';
+                setTimeout(() => {
+                    el.style.borderColor = '';
+                    el.style.boxShadow = '';
+                }, 1500);
             }
         }
     });
 }
-
-// Iniciar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', crearNumeros);
