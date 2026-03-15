@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         div.classList.add('numero');
         div.id = `n-${i}`;
         div.innerText = i;
+div.style.setProperty('--i', i);
 
         if (vendidosOficiales.includes(i)) {
             div.classList.add('vendido');
