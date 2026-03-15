@@ -3,32 +3,32 @@ const vendidosOficiales = [5, 12, 120, 450, 800];
 const metaTotal = 1000;
 
 window.onload = function() {
-    // 1. Mostrar el mensaje de bienvenida
-    document.getElementById('bienvenida-modal').style.display = 'block';
-
-    // 2. Calcular la barra de progreso
+    // Calcular estadísticas
     const cantidad = vendidosOficiales.length;
+    const faltan = metaTotal - cantidad;
     const porcentaje = (cantidad / metaTotal) * 100;
     
-    const barra = document.querySelector('.barra-llena');
+    // Actualizar barra de progreso con animación
+    const barra = document.getElementById('barra-progreso');
     if (barra) {
-        barra.style.width = porcentaje + "%";
-        barra.innerText = Math.floor(porcentaje) + "%";
+        setTimeout(() => {
+            barra.style.width = porcentaje + "%";
+            barra.innerText = Math.floor(porcentaje) + "%";
+        }, 500);
     }
     
-    const estadisticas = document.querySelector('.meta-progreso h3');
-    if (estadisticas) {
-        estadisticas.innerHTML = `Llevamos ${cantidad} de ${metaTotal} números vendidos`;
-    }
+    // Actualizar números en las tarjetas
+    document.getElementById('vendidos-num').textContent = cantidad;
+    document.getElementById('faltan-num').textContent = faltan;
 };
 
-// Funciones para cerrar ventanas
+// Funciones para modales
 function cerrarBienvenida() {
     document.getElementById('bienvenida-modal').style.display = 'none';
 }
 
 function abrirDonar() {
-    document.getElementById('modal-donar').style.display = 'block';
+    document.getElementById('modal-donar').style.display = 'flex';
 }
 
 function cerrarDonar() {
