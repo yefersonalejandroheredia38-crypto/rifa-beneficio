@@ -1,16 +1,15 @@
 /* ===== VARIABLES Y RESET ===== */
 :root {
-    --primary: #4158D0;
-    --secondary: #C850C0;
-    --accent: #FFCC70;
-    --success: #25d366;
-    --danger: #ff6b6b;
-    --dark: #1a1a2e;
-    --light: #f9f9f9;
+    --primary: #003399;        /* Azul Rey */
+    --secondary: #001a4d;       /* Azul Marino oscuro */
+    --accent: #FFD700;          /* Amarillo dorado */
+    --success: #25d366;         /* Verde WhatsApp (se mantiene) */
+    --danger: #ff6b6b;          /* Rojo (se mantiene) */
+    --dark: #001a4d;            /* Azul Marino para textos oscuros */
+    --light: #f0f8ff;           /* Azul muy claro */
     --glass-bg: rgba(255, 255, 255, 0.15);
     --glass-border: rgba(255, 255, 255, 0.2);
 }
-
 * {
     margin: 0;
     padding: 0;
