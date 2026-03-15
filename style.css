@@ -527,3 +527,12 @@ body {
         max-width: 100%;
     }
 }
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.numero {
+  animation: fadeInScale 0.3s ease forwards;
+  animation-delay: calc(var(--i) * 0.01s);
+}
