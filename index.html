@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Un Paso por la Vida - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script>
-    // Se ejecuta cuando la página termina de cargar
-    window.onload = function() {
-        abrirDonar(); 
-    };
-</script>
+
     <header class="inicio-header">
         <h1>1000 números de Esperanza ¡Unidos por mi Prótesis!</h1>
         <p>Valencia, Carabobo</p>
     </header>
-<div id="bienvenida-modal" class="capa-oscura">
-    <div class="tarjeta-bienvenida">
-        <div class="icono-corazon">❤️</div>
-        <h2>¡Gracias por visitarnos!</h2>
-        <p>Esta rifa es para costear la prótesis de pierna de un gran guerrero en Alcides Bolivar. Cada granito de arena cuenta.</p>
-        <button class="btn-entendido" onclick="cerrarBienvenida()">¡Quiero ayudar!</button>
+
+    <div id="bienvenida-modal" class="capa-oscura" style="display: none;">
+        <div class="tarjeta-bienvenida">
+            <div class="icono-corazon">❤️</div>
+            <h2>¡Gracias por visitarnos!</h2>
+            <p>Esta rifa es para costear la prótesis de pierna de un gran guerrero en Alcides Bolivar.</p>
+            <button class="btn-entendido" onclick="cerrarBienvenida()">¡Quiero ayudar!</button>
+        </div>
     </div>
-</div>
+
     <main class="contenedor-inicio">
         <section class="seccion-foto">
-            <img src="img/beneficiario.png" alt="Alcides Bolivar - Campaña Solidaria" class="foto-principal">
+            <img src="img/beneficiario.jpg" alt="Campaña Solidaria" class="foto-principal">
             <div class="historia">
                 <p>Ayúdanos con la prótesis de pierna. Cada número es una nueva oportunidad para volver a caminar.</p>
             </div>
@@ -37,11 +34,8 @@
         <section class="meta-progreso">
             <h3>Progreso de la Rifa</h3>
             <div class="barra-fondo">
-    <div class="barra-llena" style="width: 0%;">0%</div> 
-</div>
-<div class="estadisticas">
-    <p>Cargando estadísticas...</p>
-</div>
+                <div class="barra-llena" style="width: 0%;">0%</div> 
+            </div>
             <div class="estadisticas">
                 <p><strong>Meta:</strong> 1000 números</p>
             </div>
@@ -49,25 +43,39 @@
 
         <section class="acciones">
             <a href="rifa.html" class="btn-principal">🎟️ Ver Números y Comprar</a>
-            
             <button class="btn-donar" onclick="abrirDonar()">❤️ Solo quiero Donar</button>
         </section>
-
-        <div id="modal-donar" class="oculto-inicio">
-            <div class="capa-oscura" onclick="cerrarDonar()"></div>
-            <div class="tarjeta-donacion">
-                <h3>Datos para Donar</h3>
-                <div class="datos-banco">
-                    <p><strong>PAGO MÓVIL:</strong><br>
-                    Banco: 0109<br>
-                    Cédula: V-15.994.903<br>
-                    Teléfono: 04128433443</p>
-                </div>
-                <button class="btn-cerrar-modal" onclick="cerrarDonar()">Cerrar</button>
-            </div>
-        </div>
     </main>
 
-    <script src="script-inicio.js"></script>
+    <div id="modal-donar" class="modal-estructura">
+        <div class="capa-oscura" onclick="cerrarDonar()"></div>
+        <div class="tarjeta-donacion">
+            <h3>Datos para Donar</h3>
+            <p>Tu aporte directo marca la diferencia.</p>
+            <div class="datos-banco">
+                <p><strong>PAGO MÓVIL:</strong><br>
+                Banco: 0109<br>
+                Cédula: V-15.994.903<br>
+                Teléfono: 04128433443</p>
+            </div>
+            <button class="btn-cerrar-modal" onclick="cerrarDonar()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir el modal de donar
+        function abrirDonar() {
+            document.getElementById('modal-donar').style.display = 'block';
+        }
+        // Función para cerrar el modal de donar
+        function cerrarDonar() {
+            document.getElementById('modal-donar').style.display = 'none';
+        }
+        
+        // ESTO HACE QUE SE ABRA SOLO AL CARGAR
+        window.onload = function() {
+            abrirDonar();
+        };
+    </script>
 </body>
 </html>
