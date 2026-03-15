@@ -19,6 +19,17 @@ window.onload = function() {
     const faltanNum = document.getElementById('faltan-num');
     if (vendidosNum) vendidosNum.textContent = cantidad;
     if (faltanNum) faltanNum.textContent = faltan;
+
+    // Últimos números vendidos (NUEVO)
+    const ultimos = vendidosOficiales.slice(-5).reverse(); // últimos 5 en orden inverso
+    const contenedorUltimos = document.getElementById('lista-ultimos');
+    if (contenedorUltimos) {
+        if (ultimos.length > 0) {
+            contenedorUltimos.innerHTML = ultimos.map(num => `<span class="ultimo-numero">${num}</span>`).join('');
+        } else {
+            contenedorUltimos.innerHTML = '<p>Aún no hay números vendidos</p>';
+        }
+    }
 };
 
 // Funciones de modales
