@@ -1,7 +1,7 @@
-// --- 🛒 LISTA DE NÚMEROS VENDIDOS ---
+// --- LISTA DE NÚMEROS VENDIDOS ---
 const vendidosOficiales = [5, 12, 120, 450, 800]; 
 const totalNumeros = 1000;
-const miTelefono = "584122415696"; // Tu número con código de país
+const miTelefono = "584122415696"; // ¡CAMBIA ESTO POR TU NÚMERO REAL!
 
 let numeroElegido = null;
 
@@ -10,8 +10,15 @@ const contenedor = document.getElementById('contenedor-rifa');
 const capaPago = document.getElementById('capa-pago');
 const displayNum = document.getElementById('num-pago');
 
-// Función para crear los números
+// Verificar elementos
+if (!contenedor) console.error('Error: No se encontró el contenedor de números');
+if (!capaPago) console.error('Error: No se encontró el modal de pago');
+if (!displayNum) console.error('Error: No se encontró el display del número');
+
+// Crear números
 function crearNumeros() {
+    contenedor.innerHTML = '';
+    
     for (let i = 1; i <= totalNumeros; i++) {
         const div = document.createElement('div');
         div.classList.add('numero');
@@ -19,7 +26,6 @@ function crearNumeros() {
         div.innerText = i;
         div.setAttribute('data-numero', i);
 
-        // Si ya se vendió, clase especial
         if (vendidosOficiales.includes(i)) {
             div.classList.add('vendido');
         } else {
@@ -28,24 +34,22 @@ function crearNumeros() {
         
         contenedor.appendChild(div);
     }
+    
+    console.log(`✅ Creados ${totalNumeros} números`);
 }
 
-// Función para seleccionar número con efecto visual
+// Seleccionar número
 function seleccionarNumero(num, elemento) {
-    // Remover selección anterior
     document.querySelectorAll('.numero.seleccionado').forEach(el => {
         el.classList.remove('seleccionado');
     });
     
-    // Agregar selección al nuevo
     elemento.classList.add('seleccionado');
     
-    // Pequeña vibración de feedback
     elemento.style.animation = 'none';
     elemento.offsetHeight;
     elemento.style.animation = 'shake 0.3s ease';
     
-    // Abrir modal de pago
     setTimeout(() => {
         abrirPago(num);
     }, 150);
@@ -53,69 +57,70 @@ function seleccionarNumero(num, elemento) {
 
 function abrirPago(num) {
     numeroElegido = num;
-    displayNum.innerText = num;
-    capaPago.classList.remove('oculto');
+    if (displayNum) displayNum.innerText = num;
     
-    // Animación de entrada del número grande
-    const numGrande = document.querySelector('.numero-seleccionado-grande');
-    numGrande.style.animation = 'none';
-    numGrande.offsetHeight;
-    numGrande.style.animation = 'pulse 0.5s ease';
+    if (capaPago) {
+        capaPago.classList.remove('oculto');
+        
+        const numGrande = document.querySelector('.numero-seleccionado-grande');
+        if (numGrande) {
+            numGrande.style.animation = 'none';
+            numGrande.offsetHeight;
+            numGrande.style.animation = 'pulse 0.5s ease';
+        }
+    }
 }
 
 function cerrarPago() {
-    capaPago.classList.add('oculto');
+    if (capaPago) capaPago.classList.add('oculto');
     
-    // Remover selección visual al cerrar
     document.querySelectorAll('.numero.seleccionado').forEach(el => {
         el.classList.remove('seleccionado');
     });
 }
 
 function irAWhatsapp() {
-    const msg = encodeURIComponent(`🎟️ *Rifa Solidaria*\n\n¡Hola! Quiero el número *${numeroElegido}* para la rifa.\nYa realicé el pago. Aquí está el comprobante:`);
-    window.open(`https://wa.me/${miTelefono}?text=${msg}`, '_blank');
-    cerrarPago();
-}
-
-// Buscador mejorado
-document.getElementById('buscador').addEventListener('input', (e) => {
-    const val = e.target.value;
-    if (val && val >= 1 && val <= totalNumeros) {
-        const el = document.getElementById(`n-${val}`);
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "center" });
-            
-            // Efecto de búsqueda
-            el.style.transform = 'scale(1.1)';
-            el.style.borderColor = '#25d366';
-            el.style.boxShadow = '0 0 30px #25d366';
-            
-            setTimeout(() => {
-                el.style.transform = '';
-                el.style.borderColor = '';
-                el.style.boxShadow = '';
-            }, 1500);
-        }
-    }
-});
-
-// Iniciar todo
-crearNumeros();
-
-// Añadir animación shake
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        75% { transform: translateX(5px); }
+    if (!numeroElegido) {
+        alert('❌ Error: No has seleccionado ningún número');
+        return;
     }
     
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
-`;
-document.head.appendChild(style);
+    const msg = encodeURIComponent(
+        `*RIFA SOLIDARIA - ALCIDES BOLÍVAR*\n\n` +
+        `¡Hola! Quiero comprar el número *${numeroElegido}*.\n\n` +
+        `Ya realicé el pago de $1 (Bs equivalente).\n` +
+        `Aquí adjunto el comprobante.\n\n` +
+        `Quedo atento a la confirmación. ¡Gracias!`
+    );
+    
+    window.open(`https://wa.me/${miTelefono}?text=${msg}`, '_blank');
+    cerrarPago();
+    alert(`✅ Mensaje preparado para el número ${numeroElegido}`);
+}
+
+// Buscador
+const buscador = document.getElementById('buscador');
+if (buscador) {
+    buscador.addEventListener('input', (e) => {
+        const val = e.target.value;
+        if (val && val >= 1 && val <= totalNumeros) {
+            const el = document.getElementById(`n-${val}`);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "center" });
+                
+                el.style.transform = 'scale(1.1)';
+                el.style.borderColor = '#25d366';
+                el.style.boxShadow = '0 0 30px #25d366';
+                
+                setTimeout(() => {
+                    el.style.transform = '';
+                    el.style.borderColor = '';
+                    el.style.boxShadow = '';
+                }, 1500);
+            }
+        }
+    });
+}
+
+// Iniciar
+document.addEventListener('DOMContentLoaded', crearNumeros);
