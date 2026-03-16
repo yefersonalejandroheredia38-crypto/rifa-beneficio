@@ -1,5 +1,5 @@
 // ===== LISTA DE NÚMEROS VENDIDOS (debe ser la misma que en script-inicio.js) =====
-const vendidosOficiales = []; // ¡Actualiza aquí también!
+const vendidosOficiales = [11,89, 47, 520, 477,48]; // ¡Actualiza aquí también!
 const totalNumeros = 1000;
 const miTelefono = "584122415696"; // <--- CAMBIA AQUÍ A TU NÚMERO REAL (código país + número sin 0)
 
