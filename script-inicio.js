@@ -1,5 +1,5 @@
 // ===== LISTA DE NÚMEROS VENDIDOS (actualiza aquí) =====
-const vendidosOficiales = [11,89, 47, 520, 477, 48, 1, 3]; // Ejemplo
+const vendidosOficiales = [11,89, 47, 520, 477, 48, 1, 3, 191, 72, 13, 40, 9, 12, 1000, 614, 247, 508, 507, 931, 295, 165, 261, 226, 832]; // Ejemplo
 const metaTotal = 1000;
 
 window.onload = function() {
